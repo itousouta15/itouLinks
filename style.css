@@ -1,0 +1,295 @@
+:root {
+  --accent: #98cbff;
+  --accent-dim: rgba(152, 203, 255, 0.15);
+  --bg: #21252b;
+  --bg-card: #272b30;
+  --bg-card-hover: #2e353f;
+  --text: #ccc;
+  --text-muted: #888;
+  --border: rgba(152, 203, 255, 0.2);
+  --font: 'Mulish', 'Noto Serif SC', '-apple-system', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --bg-opacity: 0.05;
+
+  /* 背景圖片入口：將 none 換成 url("your-image.jpg") 即可啟用 */
+  --bg-image: url("https://blog.itousouta15.tw/images/banner.webp");
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100%;
+  font-family: var(--font);
+  background-color: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 72px 20px 96px;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  opacity: var(--bg-opacity);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ── Avatar ── */
+.avatar-wrap {
+  margin-bottom: 22px;
+}
+
+.avatar {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  border: 2px solid var(--accent);
+  transition: transform 0.3s;
+  background: var(--bg-card);
+}
+
+.avatar:hover {
+  transform: scale(1.05);
+}
+
+/* ── Name / Bio ── */
+.name {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 1px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.bio {
+  font-size: 16px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 48px;
+  letter-spacing: 0.5px;
+}
+
+/* ── Container ── */
+.container {
+  width: 100%;
+  max-width: 580px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── Section label ── */
+.section-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 32px 0 14px 4px;
+}
+
+/* ── Project cards ── */
+.project-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.project-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s, border-color 0.25s, background 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--accent-dim) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+.project-card:hover {
+  transform: scale(1.02);
+  border-color: var(--accent);
+  background: var(--bg-card-hover);
+}
+
+.project-icon {
+  font-size: 26px;
+  color: var(--accent);
+  width: 40px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.project-svg-icon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  display: block;
+  margin: auto;
+}
+
+.project-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.project-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.project-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.project-arrow {
+  font-size: 14px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.project-card:hover .project-arrow {
+  transform: translateX(4px);
+  color: var(--accent);
+}
+
+/* ── Social links ── */
+.social-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 24px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 700;
+  transition: transform 0.25s, border-color 0.25s, background 0.25s, color 0.25s;
+}
+
+.social-link:hover {
+  transform: scale(1.02);
+  border-color: var(--accent);
+  background: var(--bg-card-hover);
+  color: var(--accent);
+}
+
+.social-icon {
+  font-size: 22px;
+  width: 32px;
+  text-align: center;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.social-link:hover .social-icon {
+  transform: scale(1.15);
+  color: inherit;
+}
+
+.social-name {
+  flex: 1;
+  letter-spacing: 0.5px;
+}
+
+.social-arrow {
+  font-size: 13px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.social-link:hover .social-arrow {
+  transform: translateX(4px);
+  color: var(--accent);
+}
+
+/* ── Divider ── */
+.hr-line {
+  margin: 8px 0;
+  opacity: 0.25;
+  height: 4px;
+  background-image: linear-gradient(to right, var(--accent) 50%, transparent 0%);
+  background-size: 50px 4px;
+  background-repeat: repeat-x;
+  border: none;
+  transition: opacity 0.3s;
+}
+
+.hr-line:hover {
+  opacity: 0.45;
+}
+
+/* ── Footer ── */
+footer {
+  margin-top: 60px;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* ── Icon color overrides ── */
+.icon-instagram { color: #e1306c; }
+.icon-github    { color: #bc88ff; }
+.icon-twitter   { color: #1d9bf0; }
+.icon-discord   { color: #5865f2; }
+.icon-bahamut   { color: #00b5ad; }
+.icon-telegram  { color: #26a5e4; }
+
+@media (max-width: 600px) {
+  body { padding: 56px 16px 72px; }
+  .container { max-width: 100%; }
+}

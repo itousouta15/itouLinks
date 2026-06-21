@@ -13,6 +13,10 @@
 </head>
 <body>
 
+  <div id="loader" aria-hidden="true">
+    <div class="loader-ring"></div>
+  </div>
+
   <div class="avatar-wrap">
     <img
       class="avatar"
@@ -181,5 +185,12 @@
     &copy; 2026 itouSouta. All rights reserved.
   </footer>
 
+  <script>
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loader');
+      loader.classList.add('loader-hidden');
+      loader.addEventListener('transitionend', () => loader.remove(), { once: true });
+    });
+  </script>
 </body>
 </html>

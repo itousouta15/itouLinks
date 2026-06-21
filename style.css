@@ -332,6 +332,8 @@ footer {
 .icon-discord   { color: #5865f2; }
 .icon-bahamut   { color: #00b5ad; }
 .icon-telegram  { color: #26a5e4; }
+.icon-threads   { color: #ffffff; }
+.icon-bilibili  { color: #00a1d6; }
 
 @keyframes bgSlideX {
   0%   { background-position: 0% 50%; }

@@ -121,15 +121,13 @@ body::before {
 /* ── Contribution Graph ── */
 .contribution-wrap {
   width: 100%;
-  max-width: 880px;
+  max-width: 620px;
   margin-bottom: 40px;
-  overflow-x: auto;
 }
 
-.contribution-svg {
+.contribution-wrap img {
   display: block;
   width: 100%;
-  max-width: 880px;
   height: auto;
   opacity: 0.85;
 }
@@ -137,7 +135,7 @@ body::before {
 /* ── Container ── */
 .container {
   width: 100%;
-  max-width: 580px;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -344,17 +342,10 @@ footer {
 @media (max-width: 600px) {
   body { padding: 56px 16px 72px; }
   .container { max-width: 100%; }
+  .contribution-wrap { max-width: 100%; }
   body::before {
     background-attachment: scroll;
     background-size: 200% auto;
     animation: bgSlideX 20s ease-in-out infinite;
   }
-}
-.contribution-wrap {
-    text-align: center;
-}
-
-.contribution-wrap img {
-    width: 68%;
-    height: auto;
 }

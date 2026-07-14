@@ -1,6 +1,6 @@
 # itouLinks
 
-[links.itousouta15.tw](https://links.itousouta15.tw)
+[links.itousouta.me](https://links.itousouta.me)
 
 ## 結構
 

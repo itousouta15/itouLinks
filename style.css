@@ -11,7 +11,7 @@
   --bg-opacity: 0.05;
 
   /* 背景圖片入口：將 none 換成 url("your-image.jpg") 即可啟用 */
-  --bg-image: url("https://blog.itousouta15.tw/images/banner.webp");
+  --bg-image: url("https://blog.itousouta.me/images/banner.webp");
 }
 
 *, *::before, *::after {

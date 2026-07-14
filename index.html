@@ -1,13 +1,21 @@
 <!DOCTYPE html>
-<html lang="zh-TW" data-theme="dark">
+<html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="itouSouta的連結們(●｀ 艸 ´)">
   <title>itouLinks</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <script>
+    /* 先讀取主題設定並套用在首次繪製之前，避免深/淺色閃爍 */
+    (function () {
+      const saved = localStorage.getItem('theme');
+      const theme = saved || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Shippori+Mincho:wght@500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -17,6 +25,10 @@
     <div class="loader-ring"></div>
   </div>
 
+  <button class="theme-btn" id="themeToggle" aria-label="切換深/淺色主題">
+    <i class="fa-solid fa-circle-half-stroke"></i>
+  </button>
+
   <div class="avatar-wrap">
     <img
       class="avatar"
@@ -24,6 +36,7 @@
       onerror="this.src='https://ui-avatars.com/api/?name=itou&background=272b30&color=98cbff&size=200'"
       alt="itousouta15 avatar"
     >
+    <span class="status-dot" aria-hidden="true"></span>
   </div>
 
   <div class="name">itouSouta</div>
@@ -158,7 +171,7 @@
       </a>
 
       <a class="project-card" href="https://github.com/SCAICT/SCAICT-uwu" target="_blank" rel="noopener">
-        <div class="project-icon"><img src="/img/SCAICT.svg" alt="SCAICT" class="project-svg-icon"></div>
+        <div class="project-icon"><span class="project-svg-icon icon-scaict" role="img" aria-label="SCAICT"></span></div>
         <div class="project-info">
           <div class="project-name">SCAICT-uwu</div>
           <div class="project-desc">SCAICT / SCAICT-uwu</div>
@@ -167,7 +180,7 @@
       </a>
 
       <a class="project-card" href="https://github.com/SCAICT/SCAICT.github.io" target="_blank" rel="noopener">
-        <div class="project-icon"><img src="/img/SCAICT.svg" alt="SCAICT" class="project-svg-icon"></div>
+        <div class="project-icon"><span class="project-svg-icon icon-scaict" role="img" aria-label="SCAICT"></span></div>
         <div class="project-info">
           <div class="project-name">SCAICT Website</div>
           <div class="project-desc">SCAICT / SCAICT.github.io</div>
@@ -176,7 +189,7 @@
       </a>
 
       <a class="project-card" href="https://github.com/SCAICT/115-summer-camp" target="_blank" rel="noopener">
-        <div class="project-icon"><img src="/img/SCAICT.svg" alt="SCAICT" class="project-svg-icon"></div>
+        <div class="project-icon"><span class="project-svg-icon icon-scaict" role="img" aria-label="SCAICT"></span></div>
         <div class="project-info">
           <div class="project-name">115 Summer Camp</div>
           <div class="project-desc">SCAICT / 115-summer-camp</div>
@@ -214,6 +227,13 @@
       const loader = document.getElementById('loader');
       loader.classList.add('loader-hidden');
       loader.addEventListener('transitionend', () => loader.remove(), { once: true });
+    });
+
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const html = document.documentElement;
+      const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
     });
   </script>
 </body>

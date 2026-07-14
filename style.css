@@ -1,17 +1,39 @@
 :root {
-  --accent: #98cbff;
-  --accent-dim: rgba(152, 203, 255, 0.15);
-  --bg: #21252b;
-  --bg-card: #272b30;
-  --bg-card-hover: #2e353f;
-  --text: #ccc;
-  --text-muted: #888;
-  --border: rgba(152, 203, 255, 0.2);
-  --font: 'Mulish', 'Noto Serif SC', '-apple-system', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --bg: #1b1e23;
+  --panel: #24262b;
+  --panel-hover: #292c32;
+  --inset: #181b20;
+  --bd: rgba(255, 255, 255, 0.07);
+  --bd2: rgba(255, 255, 255, 0.14);
+  --tx: #e8ebf2;
+  --dim: #9aa1ad;
+  --mute: #6a7280;
+  --blue: #b0bdf7;
+  --purple: #a1ade0;
+  --shadow: rgba(0, 0, 0, 0.45);
+
+  --font-sans: 'Noto Sans TC', system-ui, sans-serif;
+  --font-serif: 'Shippori Mincho', 'Noto Serif TC', serif;
+  --font-mono: 'JetBrains Mono', monospace;
   --bg-opacity: 0.05;
 
   /* 背景圖片入口：將 none 換成 url("your-image.jpg") 即可啟用 */
   --bg-image: url("https://blog.itousouta.me/images/banner.webp");
+}
+
+:root[data-theme="light"] {
+  --bg: #bfc0c7f1;
+  --panel: #d5d6dd;
+  --panel-hover: #cbccd3;
+  --inset: #d2d5db;
+  --bd: rgba(6, 6, 7, 0.08);
+  --bd2: rgba(20, 24, 40, 0.16);
+  --tx: #22262d;
+  --dim: #494f59;
+  --mute: #6b7280;
+  --blue: #364a7c;
+  --purple: #5c7cbf;
+  --shadow: rgba(60, 70, 90, 0.16);
 }
 
 *, *::before, *::after {
@@ -22,10 +44,14 @@
 
 html, body {
   min-height: 100%;
-  font-family: var(--font);
+  font-family: var(--font-sans);
   background-color: var(--bg);
-  color: var(--text);
+  color: var(--tx);
   -webkit-font-smoothing: antialiased;
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+  display: none;
 }
 
 body {
@@ -35,6 +61,7 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 72px 20px 96px;
+  transition: background 0.35s ease, color 0.35s ease;
 }
 
 body::before {
@@ -48,6 +75,32 @@ body::before {
   opacity: var(--bg-opacity);
   z-index: -1;
   pointer-events: none;
+}
+
+/* ── Theme toggle ── */
+.theme-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--bd2);
+  background: var(--inset);
+  color: var(--tx);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 100;
+  transition: transform 0.2s;
+}
+.theme-btn:hover {
+  transform: rotate(35deg);
+}
+.theme-btn:active {
+  transform: rotate(35deg) scale(0.85);
 }
 
 /* ── Loader ── */
@@ -71,8 +124,8 @@ body::before {
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  border: 3px solid rgba(152, 203, 255, 0.15);
-  border-top-color: var(--accent);
+  border: 3px solid var(--bd2);
+  border-top-color: var(--blue);
   animation: spin 0.9s linear infinite;
 }
 
@@ -82,6 +135,7 @@ body::before {
 
 /* ── Avatar ── */
 .avatar-wrap {
+  position: relative;
   margin-bottom: 22px;
 }
 
@@ -91,31 +145,44 @@ body::before {
   border-radius: 50%;
   object-fit: cover;
   display: block;
-  border: 2px solid var(--accent);
+  border: 2px solid var(--blue);
   transition: transform 0.3s;
-  background: var(--bg-card);
+  background: var(--panel);
 }
 
 .avatar:hover {
   transform: scale(1.05);
 }
 
+.status-dot {
+  position: absolute;
+  right: 4px;
+  bottom: 6px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #43b581;
+  border: 3px solid var(--bg);
+}
+
 /* ── Name / Bio ── */
 .name {
+  font-family: var(--font-serif);
   font-size: 32px;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--tx);
   letter-spacing: 1px;
   text-align: center;
   margin-bottom: 10px;
 }
 
 .bio {
-  font-size: 16px;
-  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--dim);
   text-align: center;
   margin-bottom: 48px;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
 }
 
 /* ── Contribution Graph ── */
@@ -143,11 +210,12 @@ body::before {
 
 /* ── Section label ── */
 .section-label {
-  font-size: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--mute);
   margin: 32px 0 14px 4px;
 }
 
@@ -162,39 +230,25 @@ body::before {
   display: flex;
   align-items: center;
   gap: 20px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  background: var(--panel);
+  border: 1px solid var(--bd);
+  border-radius: 0;
   padding: 20px 24px;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.25s, border-color 0.25s, background 0.25s;
+  transition: border-color 0.2s ease, background 0.2s ease;
   position: relative;
   overflow: hidden;
 }
 
-.project-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, var(--accent-dim) 0%, transparent 60%);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.project-card:hover::before {
-  opacity: 1;
-}
-
 .project-card:hover {
-  transform: scale(1.02);
-  border-color: var(--accent);
-  background: var(--bg-card-hover);
+  border-color: var(--bd2);
+  background: var(--panel-hover);
 }
 
 .project-icon {
   font-size: 26px;
-  color: var(--accent);
+  color: var(--blue);
   width: 40px;
   text-align: center;
   flex-shrink: 0;
@@ -208,37 +262,58 @@ body::before {
   margin: auto;
 }
 
+/* Mono-color logos: mask-based so they follow var(--blue) across themes,
+   same technique as the footer's brand icons (mask-image + currentColor). */
+.icon-scaict {
+  background-color: var(--blue);
+  -webkit-mask-image: url("img/SCAICT.svg");
+  mask-image: url("img/SCAICT.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
 .project-info {
   flex: 1;
   min-width: 0;
 }
 
 .project-name {
+  font-family: var(--font-serif);
   font-size: 18px;
   font-weight: 700;
-  color: var(--accent);
-  letter-spacing: 0.5px;
+  color: var(--tx);
+  letter-spacing: 0.3px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: transform 0.25s ease;
+}
+
+.project-card:hover .project-name {
+  transform: translateX(3px);
 }
 
 .project-desc {
-  font-size: 13px;
-  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--mute);
   margin-top: 4px;
 }
 
 .project-arrow {
   font-size: 14px;
-  color: var(--text-muted);
+  color: var(--mute);
   flex-shrink: 0;
-  transition: transform 0.2s, color 0.2s;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .project-card:hover .project-arrow {
   transform: translateX(4px);
-  color: var(--accent);
+  color: var(--blue);
 }
 
 /* ── Social links ── */
@@ -252,22 +327,21 @@ body::before {
   display: flex;
   align-items: center;
   gap: 16px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  background: var(--panel);
+  border: 1px solid var(--bd);
+  border-radius: 0;
   padding: 16px 24px;
   text-decoration: none;
-  color: var(--text);
-  font-size: 17px;
+  color: var(--tx);
+  font-family: var(--font-serif);
+  font-size: 16px;
   font-weight: 700;
-  transition: transform 0.25s, border-color 0.25s, background 0.25s, color 0.25s;
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
 
 .social-link:hover {
-  transform: scale(1.02);
-  border-color: var(--accent);
-  background: var(--bg-card-hover);
-  color: var(--accent);
+  border-color: var(--bd2);
+  background: var(--panel-hover);
 }
 
 .social-icon {
@@ -280,59 +354,56 @@ body::before {
 
 .social-link:hover .social-icon {
   transform: scale(1.15);
-  color: inherit;
 }
 
 .social-name {
   flex: 1;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
+  transition: transform 0.25s ease;
+}
+
+.social-link:hover .social-name {
+  transform: translateX(3px);
 }
 
 .social-arrow {
   font-size: 13px;
-  color: var(--text-muted);
+  color: var(--mute);
   flex-shrink: 0;
-  transition: transform 0.2s, color 0.2s;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .social-link:hover .social-arrow {
   transform: translateX(4px);
-  color: var(--accent);
+  color: var(--blue);
 }
 
 /* ── Divider ── */
 .hr-line {
-  margin: 8px 0;
-  opacity: 0.25;
-  height: 4px;
-  background-image: linear-gradient(to right, var(--accent) 50%, transparent 0%);
-  background-size: 50px 4px;
-  background-repeat: repeat-x;
+  margin: 20px 0;
+  height: 1px;
+  background: var(--bd);
   border: none;
-  transition: opacity 0.3s;
-}
-
-.hr-line:hover {
-  opacity: 0.45;
 }
 
 /* ── Footer ── */
 footer {
   margin-top: 60px;
-  font-size: 13px;
-  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--mute);
   text-align: center;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
 }
 
 /* ── Icon color overrides ── */
 .icon-instagram { color: #e1306c; }
-.icon-github    { color: #bc88ff; }
+.icon-github    { color: var(--dim); }
 .icon-twitter   { color: #1d9bf0; }
 .icon-discord   { color: #5865f2; }
 .icon-bahamut   { color: #00b5ad; }
 .icon-telegram  { color: #26a5e4; }
-.icon-threads   { color: #ffffff; }
+.icon-threads   { color: var(--dim); }
 .icon-bilibili  { color: #00a1d6; }
 
 @keyframes bgSlideX {
@@ -342,6 +413,10 @@ footer {
 }
 
 @media (max-width: 600px) {
+  .theme-btn {
+    top: 14px;
+    right: 14px;
+  }
   body { padding: 56px 16px 72px; }
   .container { max-width: 100%; }
   .contribution-wrap { max-width: 100%; }

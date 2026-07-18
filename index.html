@@ -6,14 +6,6 @@
   <meta name="description" content="itouSouta的連結們(●｀ 艸 ´)">
   <title>itouLinks</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <script>
-    /* 先讀取主題設定並套用在首次繪製之前，避免深/淺色閃爍 */
-    (function () {
-      const saved = localStorage.getItem('theme');
-      const theme = saved || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-      document.documentElement.setAttribute('data-theme', theme);
-    })();
-  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Shippori+Mincho:wght@500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -24,10 +16,6 @@
   <div id="loader" aria-hidden="true">
     <div class="loader-ring"></div>
   </div>
-
-  <button class="theme-btn" id="themeToggle" aria-label="切換深/淺色主題">
-    <i class="fa-solid fa-circle-half-stroke"></i>
-  </button>
 
   <div class="avatar-wrap">
     <img
@@ -43,7 +31,7 @@
   <div class="bio"> Developer ｜ Vocaloid-P ｜ Illustrator</div>
 
   <div class="contribution-wrap">
-    <img src="img/github-user-contribution.svg" alt="GitHub Contribution Graph">
+    <img src="https://www.itousouta.me/assets/github-user-contribution-dark.svg" alt="GitHub Contribution Graph">
   </div>
 
   <div class="container">
@@ -54,7 +42,7 @@
       <a class="project-card" href="https://itousouta.me/" target="_blank" rel="noopener">
         <div class="project-icon"><i class="fa-solid fa-house"></i></div>
         <div class="project-info">
-          <div class="project-name">itousouta.tw</div>
+          <div class="project-name">itouSouta.me</div>
           <div class="project-desc">我的官網 ٩(๑•̀ω•́๑)۶</div>
         </div>
         <i class="fa-solid fa-arrow-right project-arrow"></i>
@@ -92,6 +80,15 @@
         <div class="project-info">
           <div class="project-name">itouOJ</div>
           <div class="project-desc">我的 Online Judge 系統 (｀・ω・´)</div>
+        </div>
+        <i class="fa-solid fa-arrow-right project-arrow"></i>
+      </a>
+
+      <a class="project-card" href="https://status.itousouta.me/" target="_blank" rel="noopener">
+        <div class="project-icon"><i class="fa-solid fa-signal"></i></div>
+        <div class="project-info">
+          <div class="project-name">itouStatus</div>
+          <div class="project-desc">我的服務狀態頁 (｡•̀ᴗ-)✧</div>
         </div>
         <i class="fa-solid fa-arrow-right project-arrow"></i>
       </a>
@@ -227,13 +224,6 @@
       const loader = document.getElementById('loader');
       loader.classList.add('loader-hidden');
       loader.addEventListener('transitionend', () => loader.remove(), { once: true });
-    });
-
-    document.getElementById('themeToggle').addEventListener('click', () => {
-      const html = document.documentElement;
-      const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-      html.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
     });
   </script>
 </body>

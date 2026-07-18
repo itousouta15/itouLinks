@@ -77,32 +77,6 @@ body::before {
   pointer-events: none;
 }
 
-/* ── Theme toggle ── */
-.theme-btn {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 1px solid var(--bd2);
-  background: var(--inset);
-  color: var(--tx);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 16px;
-  z-index: 100;
-  transition: transform 0.2s;
-}
-.theme-btn:hover {
-  transform: rotate(35deg);
-}
-.theme-btn:active {
-  transform: rotate(35deg) scale(0.85);
-}
-
 /* ── Loader ── */
 #loader {
   position: fixed;
@@ -413,10 +387,6 @@ footer {
 }
 
 @media (max-width: 600px) {
-  .theme-btn {
-    top: 14px;
-    right: 14px;
-  }
   body { padding: 56px 16px 72px; }
   .container { max-width: 100%; }
   .contribution-wrap { max-width: 100%; }
